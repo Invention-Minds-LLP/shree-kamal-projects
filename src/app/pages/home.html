@@ -1,0 +1,99 @@
+<!-- The build: scroll through the six stages and the lotus is built with them -->
+<section class="scene" aria-labelledby="hero-h">
+  <div class="scene-grid wrap">
+    <div class="visual" aria-hidden="false">
+      <div class="visual-inner">
+        <app-lotus-build class="lotus" [t]="t()" [still]="still()" />
+        <ol class="rail" aria-label="Build stages">
+          @for (s of stages; track s.id; let i = $index) {
+            <li [class.on]="i === active()" [class.done]="t()[i] >= 1">
+              <button type="button" (click)="jump(i)" [attr.aria-current]="i === active() ? 'step' : null">
+                <span class="dot"></span><span class="rn">{{ s.name }}</span>
+              </button>
+            </li>
+          }
+        </ol>
+        <p class="now" aria-hidden="true">
+          @if (active() >= 0) {
+            <span class="now-n">{{ active() + 1 }}</span> {{ stages[active()].name }}
+          } @else {
+            Scroll to build
+          }
+        </p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="intro">
+        <h1 id="hero-h">Built from the first line to <em>full bloom.</em></h1>
+        <p class="sub">
+          {{ company.name }} designs and builds facilities for pharma, R&amp;D labs, hospitals, clinics and
+          diagnostic centres: layout design, electrical and building construction through to handover, then
+          maintenance for as long as you need it.
+        </p>
+        <div class="ctas">
+          <a class="btn" [href]="'tel:' + contact.phones[0].tel">
+            <app-icon name="phone" /><span class="tnum">Call {{ contact.phones[0].display }}</span>
+          </a>
+          <a class="btn line" routerLink="/projects">See our projects</a>
+        </div>
+        <p class="facts tnum">{{ company.projects }} projects since {{ company.established }} · a team of {{ company.team }} · {{ company.clients.toLowerCase() }}</p>
+        <p class="cue"><span class="cue-line" aria-hidden="true"></span>Scroll to watch a facility take shape</p>
+      </div>
+
+      @for (s of stages; track s.id; let i = $index) {
+        <article class="step" #step [class.on]="i === active()" [attr.aria-labelledby]="'st-' + s.id">
+          <div class="step-head">
+            <span class="num" aria-hidden="true">{{ i + 1 }}</span>
+            <h2 [id]="'st-' + s.id">{{ s.name }}</h2>
+          </div>
+          <p class="lede">{{ s.short }}</p>
+          <p class="detail">{{ s.detail }}</p>
+          <ul class="inc">
+            @for (x of s.includes; track x) { <li>{{ x }}</li> }
+          </ul>
+          @if ($last) {
+            <a class="btn done-cta" routerLink="/contact">Start your project <app-icon name="arrow" /></a>
+          }
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Sectors -->
+<section class="sectors wrap" aria-labelledby="sec-h">
+  <div class="sec-head">
+    <h2 id="sec-h">For buildings with a process inside.</h2>
+    <p>
+      Every sector we work in has a regulator, an auditor or a patient on the other side of the wall.
+      The layout, the power and the finishes have to be right first time.
+    </p>
+  </div>
+  <ul class="sec-list">
+    @for (s of sectors; track s.id) {
+      <li>
+        <a [routerLink]="'/sectors'" [fragment]="s.id" class="sec-row">
+          <span class="sec-name">{{ s.name }}</span>
+          <span class="sec-line">{{ s.line }}</span>
+          <span class="sec-go" aria-hidden="true"><app-icon name="arrow" /></span>
+        </a>
+      </li>
+    }
+  </ul>
+</section>
+
+<!-- Projects -->
+<section class="work" aria-labelledby="work-h">
+  <div class="wrap">
+    <div class="work-head">
+      <h2 id="work-h">{{ company.projects }} projects since {{ company.established }}.</h2>
+      <a routerLink="/projects" class="btn line">All projects <app-icon name="arrow" /></a>
+    </div>
+    <div class="work-grid">
+      @for (p of projects; track p.id) {
+        <app-project-board [p]="p" />
+      }
+    </div>
+  </div>
+</section>
