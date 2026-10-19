@@ -239,6 +239,9 @@ h1 em {
 }
 
 @media (max-width: 900px) {
+  .scene {
+    background: var(--navy-900);
+  }
   .scene-grid {
     grid-template-columns: 1fr;
     gap: 0;
@@ -268,6 +271,8 @@ h1 em {
   }
   .lotus {
     width: min(56vw, 28vh);
+    overflow: hidden;
+    margin-bottom: 0.4rem;
   }
   .now {
     display: block;
@@ -308,12 +313,19 @@ h1 em {
     padding-block: 1.5rem 3rem;
   }
   .step {
-    min-height: 62vh;
+    min-height: 0;
     justify-content: flex-start;
-    padding-block: 1.5rem 3rem;
+    padding-block: 2.5rem 4.5rem;
   }
   .step:last-child {
-    min-height: 75vh;
+    /* room to scroll the final stage up under the band so the bloom completes */
+    min-height: calc(72vh - 170px);
+  }
+  .step-head {
+    gap: 0.75rem;
+  }
+  .num {
+    font-size: 3rem;
   }
 }
 
