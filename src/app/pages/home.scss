@@ -229,7 +229,7 @@ h1 em {
 .inc li {
   padding: 0.3rem 0.8rem;
   border: 1px solid var(--rule-navy);
-  border-radius: 999px;
+  border-radius: var(--pill);
   font-size: 0.88rem;
   color: var(--on-navy-dim);
 }

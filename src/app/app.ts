@@ -5,11 +5,13 @@ import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/ro
 import { filter } from 'rxjs';
 import { CallBand, SiteFooter } from './shared/site-footer';
 import { SiteHeader } from './shared/site-header';
+import { ThemeSwitch } from './shared/theme-switch';
+import { ThemeService } from './theme';
 
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterOutlet, SiteHeader, SiteFooter, CallBand],
+  imports: [RouterOutlet, SiteHeader, SiteFooter, CallBand, ThemeSwitch],
   template: `
     <a class="skip-link" href="#main">Skip to content</a>
     <app-site-header />
@@ -20,6 +22,7 @@ import { SiteHeader } from './shared/site-header';
       <app-call-band />
     }
     <app-site-footer />
+    <app-theme-switch />
   `,
   styles: `main:focus { outline: none; }`,
 })
@@ -30,6 +33,7 @@ export class App {
     const router = inject(Router);
     const route = inject(ActivatedRoute);
     const meta = inject(Meta);
+    inject(ThemeService);
     router.events
       .pipe(filter((e) => e instanceof NavigationEnd), takeUntilDestroyed())
       .subscribe((e) => {

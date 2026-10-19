@@ -5,7 +5,7 @@ export const routes: Routes = [
     path: '',
     title: 'Shri Kamal Projects | Pharma, lab & healthcare facility construction, Bengaluru',
     data: { description: 'Layout design, electrical and building construction for pharma, R&D labs, healthcare and diagnostics, from first drawing to handover and maintenance. Bengaluru.' },
-    loadComponent: () => import('./pages/home').then((m) => m.Home),
+    loadComponent: () => import('./pages/home-page').then((m) => m.HomePage),
   },
   {
     path: 'services',

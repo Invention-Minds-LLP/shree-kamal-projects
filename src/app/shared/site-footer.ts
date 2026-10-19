@@ -110,7 +110,7 @@ export class CallBand {
     .fmark { display: grid; justify-items: start; gap: 0.2rem; text-decoration: none; }
     .fmark:hover { text-decoration: none; }
     .fmark img { width: 72px; height: 72px; margin-bottom: 0.4rem; }
-    .fname { font-family: var(--font-display); font-size: 1.7rem; color: var(--on-navy); line-height: 1.1; }
+    .fname { font-family: var(--font-brand); font-size: 1.7rem; color: var(--on-navy); line-height: 1.1; }
     .ftag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lotus-light); }
     .est { margin-top: 1.25rem; font-size: 0.92rem; }
     .h {

@@ -38,6 +38,7 @@ export interface Stage {
   short: string;
   detail: string;
   includes: string[];
+  photo: string; // construction theme: progress photo of the same space at this stage (illustrative)
 }
 
 // The lifecycle the firm owns, in order. "Associated services" stays generic
@@ -45,6 +46,7 @@ export interface Stage {
 export const stages: Stage[] = [
   {
     id: 'layout',
+    photo: '/construction/stage-1-layout.jpg',
     code: 'L',
     name: 'Layout design',
     short: 'Plan the floor before a wall goes up.',
@@ -54,6 +56,7 @@ export const stages: Stage[] = [
   },
   {
     id: 'electrical',
+    photo: '/construction/stage-2-electrical.jpg',
     code: 'E',
     name: 'Electrical',
     short: 'Power and lighting for equipment that cannot stop.',
@@ -63,6 +66,7 @@ export const stages: Stage[] = [
   },
   {
     id: 'construction',
+    photo: '/construction/stage-3-construction.jpg',
     code: 'C',
     name: 'Building construction',
     short: 'Civil and interior works to the approved layout.',
@@ -72,6 +76,7 @@ export const stages: Stage[] = [
   },
   {
     id: 'services',
+    photo: '/construction/stage-4-services.jpg',
     code: 'S',
     name: 'Associated services',
     short: 'Everything else the building depends on.',
@@ -81,6 +86,7 @@ export const stages: Stage[] = [
   },
   {
     id: 'closure',
+    photo: '/construction/stage-5-closure.jpg',
     code: 'H',
     name: 'Final closure',
     short: 'Handed over complete, not nearly complete.',
@@ -90,6 +96,7 @@ export const stages: Stage[] = [
   },
   {
     id: 'maintenance',
+    photo: '/construction/stage-6-maintenance.jpg',
     code: 'M',
     name: 'Maintenance',
     short: 'We stay on after handover.',
@@ -106,11 +113,13 @@ export interface Sector {
   line: string;
   needs: string[];
   tone: 'navy' | 'yellow' | 'steel' | 'white' | 'ink';
+  photo: string; // construction theme (illustrative)
 }
 
 export const sectors: Sector[] = [
   {
     id: 'pharma',
+    photo: '/construction/stage-5-closure.jpg',
     name: 'Pharma',
     board: 'Pharma',
     line: 'Manufacturing and support areas where layout, cleanliness and reliable power decide whether you pass audit.',
@@ -119,6 +128,7 @@ export const sectors: Sector[] = [
   },
   {
     id: 'labs',
+    photo: '/construction/sector-labs.jpg',
     name: 'R&D labs',
     board: 'R&D Labs',
     line: 'Research and testing labs with dense equipment loads, bench services and room to change later.',
@@ -127,6 +137,7 @@ export const sectors: Sector[] = [
   },
   {
     id: 'healthcare',
+    photo: '/construction/sector-healthcare.jpg',
     name: 'Healthcare',
     board: 'Health­care',
     line: 'Hospital and clinical spaces planned around patients, staff movement and critical electrical loads.',
@@ -135,6 +146,7 @@ export const sectors: Sector[] = [
   },
   {
     id: 'rehab',
+    photo: '/construction/sector-rehab.jpg',
     name: 'Rehab & polyclinics',
     board: 'Rehab & Poly­clinics',
     line: 'Outpatient, therapy and multi-speciality clinics where accessibility and day-to-day running come first.',
@@ -143,6 +155,7 @@ export const sectors: Sector[] = [
   },
   {
     id: 'diagnostics',
+    photo: '/construction/sector-diagnostics.jpg',
     name: 'Diagnostics',
     board: 'Diagnos­tics',
     line: 'Imaging and pathology centres where equipment, power quality and sample flow shape the building.',

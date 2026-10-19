@@ -55,7 +55,7 @@ import { Icon } from './icon';
     .mark { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; flex: none; }
     .mark img { width: 48px; height: 48px; }
     .words { display: grid; line-height: 1.1; }
-    .name { font-family: var(--font-display); font-size: 1.35rem; color: var(--brand-blue); letter-spacing: 0.01em; }
+    .name { font-family: var(--font-brand); font-size: 1.35rem; color: var(--brand-blue); letter-spacing: 0.01em; }
     .tag { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lotus-deep); }
 
     .nav { display: flex; align-items: center; gap: 1.25rem; margin-left: auto; }

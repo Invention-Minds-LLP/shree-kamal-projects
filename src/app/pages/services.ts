@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ThemeService } from '../theme';
 import { stages } from '../data/site';
 import { PageBoard } from '../shared/page-board';
 import { LotusBuild } from '../shared/lotus-build';
@@ -9,7 +10,7 @@ import { LotusBuild } from '../shared/lotus-build';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [PageBoard, LotusBuild],
   template: `
-    <app-page-board title="Layout to maintenance."
+    <app-page-board title="Layout to maintenance." photo="/construction/stage-3-construction.jpg"
       lead="Six stages, one contractor. We can take the whole job or pick it up at the stage you need, but we are built to own it end to end." />
 
 
@@ -19,7 +20,7 @@ import { LotusBuild } from '../shared/lotus-build';
       <ol class="schedule">
         @for (s of stages; track s.id; let i = $index) {
           <li class="item" [id]="s.id">
-            <div class="code" aria-hidden="true"><span class="n">{{ i + 1 }}</span><app-lotus-build class="mini" [t]="frozen[i]" [still]="true" /></div>
+            <div class="code" aria-hidden="true"><span class="n">{{ i + 1 }}</span>@if (construction()) { <img class="shot" [src]="s.photo" alt="" width="1536" height="1024" loading="lazy" /> } @else { <app-lotus-build class="mini" [t]="frozen[i]" [still]="true" /> }</div>
             <div class="head">
               <h3>{{ s.name }}</h3>
               <p class="short">{{ s.short }}</p>
@@ -52,13 +53,15 @@ import { LotusBuild } from '../shared/lotus-build';
     }
     .n { font-family: var(--font-display); font-size: 4rem; line-height: 0.8; color: var(--lotus-light); }
     .mini { width: 100%; max-width: 120px; }
+    .shot { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+    :host-context([data-theme='construction']) .item { grid-template-columns: 14rem minmax(0, 1fr) minmax(0, 1.3fr); }
     h3 { font-size: clamp(1.9rem, 3.4vw, 2.8rem); }
     .short { margin-top: 0.6rem; color: var(--on-navy-dim); font-weight: 500; }
     .body p { color: var(--on-navy); max-width: 62ch; }
     ul { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0 0; padding: 0; list-style: none; }
     ul li {
       padding: 0.3rem 0.65rem; border: 1px solid var(--rule-navy); font-size: 0.9rem;
-      color: var(--on-navy-dim); border-radius: 999px;
+      color: var(--on-navy-dim); border-radius: var(--pill);
     }
     @media (max-width: 860px) {
       .item { grid-template-columns: 5rem 1fr; } .n { font-size: 3rem; }
@@ -68,5 +71,9 @@ import { LotusBuild } from '../shared/lotus-build';
 })
 export class Services {
   protected readonly stages = stages;
+  private readonly theme = inject(ThemeService);
+  protected construction() {
+    return this.theme.theme() === 'construction';
+  }
   protected readonly frozen = stages.map((_, i) => stages.map((_, j) => (j <= i ? 1 : 0)));
 }

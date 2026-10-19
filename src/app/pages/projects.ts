@@ -8,7 +8,7 @@ import { ProjectBoard } from '../shared/project-board';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [PageBoard, ProjectBoard],
   template: `
-    <app-page-board title="Our projects."
+    <app-page-board title="Our projects." photo="/construction/hero-site.jpg"
       [lead]="company.projects + ' projects delivered since ' + company.established + ' across pharma, research, healthcare and diagnostics, from first layout to handover and beyond.'" />
 
     <section class="wrap list" aria-labelledby="list-h">
@@ -44,7 +44,7 @@ import { ProjectBoard } from '../shared/project-board';
     .bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; }
     .filters { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .filters button {
-      min-height: 44px; padding: 0.5rem 1.1rem; border: 0; border-radius: 999px; cursor: pointer;
+      min-height: 44px; padding: 0.5rem 1.1rem; border: 0; border-radius: var(--pill); cursor: pointer;
       background: #fff; color: var(--navy-900); box-shadow: inset 0 0 0 1px var(--rule-ink);
       font-weight: 600; font-size: 0.95rem;
       transition: background-color 0.2s var(--ease-out), color 0.2s var(--ease-out);

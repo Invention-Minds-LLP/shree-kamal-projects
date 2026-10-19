@@ -13,6 +13,15 @@
   <meta property="og:image" content="/brand/logo-card-crop.png">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="brand/lotus.png">
+  <script>
+    (function () {
+      try {
+        var p = new URLSearchParams(location.search).get('theme');
+        var t = p || sessionStorage.getItem('skp-theme');
+        if (t === 'construction' || t === 'build' || t === 'lotus') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <app-root></app-root>

@@ -1,0 +1,105 @@
+<!-- The build: one plot, one drone camera, built frame by frame as you scroll -->
+<section class="build" #track [style.--units]="units" aria-labelledby="b-hero-h">
+  <div class="pin" #pin>
+    <div class="photos">
+      <div class="zoom" [style.transform]="'scale(' + zoom() + ')'">
+        @for (f of frames; track f.src; let i = $index) {
+          <img [src]="f.src" [attr.srcset]="f.srcset" sizes="100vw" width="1536" height="1024" decoding="async"
+            [attr.fetchpriority]="i === 0 ? 'high' : null" [loading]="i < 2 ? 'eager' : 'lazy'"
+            [alt]="i === frame() ? 'Progress photo ' + (i + 1) + ' of ' + frames.length + ': ' + f.cap : ''"
+            [style.opacity]="opacity(i)" />
+        }
+      </div>
+      <span class="illustrative">Illustrative images</span>
+    </div>
+    <div class="shade" aria-hidden="true"></div>
+
+    <div class="copy wrap">
+      <div class="hero" [style.opacity]="heroOp()" [class.off]="heroOp() < 0.05">
+        <h1 id="b-hero-h">From an empty plot to a <em>working facility.</em></h1>
+        <p class="sub">
+          Layout design, electrical and building construction for pharma, R&amp;D labs, hospitals, clinics and
+          diagnostic centres, through handover and into maintenance.
+        </p>
+        <div class="ctas">
+          <a class="btn" [href]="'tel:' + contact.phones[0].tel">
+            <app-icon name="phone" /><span class="tnum">Call {{ contact.phones[0].display }}</span>
+          </a>
+          <a class="btn line" routerLink="/projects">See our projects</a>
+        </div>
+        <p class="facts tnum">{{ company.projects }} projects since {{ company.established }} · a team of {{ company.team }} · {{ company.clients.toLowerCase() }}</p>
+        <p class="cue"><span class="cue-line" aria-hidden="true"></span>Scroll to build it</p>
+      </div>
+
+      <div class="panel" aria-hidden="true" [style.opacity]="panelOp()" [class.off]="panelOp() < 0.05">
+        <div class="step-head">
+          <span class="num">{{ stage() + 1 }}</span>
+          <h2>{{ stages[stage()].name }}</h2>
+        </div>
+        <p class="lede">{{ stages[stage()].short }}</p>
+        <p class="cap"><span class="tnum">{{ frame() + 1 }}/{{ frames.length }}</span>{{ frames[frame()].cap }}</p>
+        <ul class="inc">
+          @for (x of stages[stage()].includes; track x) { <li>{{ x }}</li> }
+        </ul>
+        @if (frame() === frames.length - 1) {
+          <a class="btn end-cta" routerLink="/contact" tabindex="-1">Start your project <app-icon name="arrow" /></a>
+        }
+      </div>
+    </div>
+
+    <ol class="bar wrap" aria-label="Jump to a stage">
+      @for (s of stages; track s.id; let i = $index) {
+        <li [class.on]="i === stage() && panelOp() > 0.5">
+          <button type="button" (click)="jump(i)" [attr.aria-current]="i === stage() && panelOp() > 0.5 ? 'step' : null">
+            <span class="bar-n tnum" aria-hidden="true">{{ i + 1 }}</span><span class="bar-name">{{ s.name }}</span>
+            <span class="track" aria-hidden="true"><span class="fill" [style.transform]="'scaleX(' + fill(i) + ')'"></span></span>
+          </button>
+        </li>
+      }
+    </ol>
+  </div>
+
+  <!-- The same lifecycle as text, for screen readers -->
+  <ol class="visually-hidden">
+    @for (s of stages; track s.id) {
+      <li>{{ s.name }}: {{ s.short }} {{ s.detail }}</li>
+    }
+  </ol>
+</section>
+
+<!-- Sectors -->
+<section class="sectors wrap" aria-labelledby="b-sec-h">
+  <div class="sec-head">
+    <h2 id="b-sec-h">For buildings with a process inside.</h2>
+    <p>
+      Every sector we work in has a regulator, an auditor or a patient on the other side of the wall.
+      The layout, the power and the finishes have to be right first time.
+    </p>
+  </div>
+  <ul class="sec-list">
+    @for (s of sectors; track s.id) {
+      <li>
+        <a [routerLink]="'/sectors'" [fragment]="s.id" class="sec-row">
+          <span class="sec-name">{{ s.name }}</span>
+          <span class="sec-line">{{ s.line }}</span>
+          <span class="sec-go" aria-hidden="true"><app-icon name="arrow" /></span>
+        </a>
+      </li>
+    }
+  </ul>
+</section>
+
+<!-- Projects -->
+<section class="work" aria-labelledby="b-work-h">
+  <div class="wrap">
+    <div class="work-head">
+      <h2 id="b-work-h">{{ company.projects }} projects since {{ company.established }}.</h2>
+      <a routerLink="/projects" class="btn line">All projects <app-icon name="arrow" /></a>
+    </div>
+    <div class="work-grid">
+      @for (p of projects; track p.id) {
+        <app-project-board [p]="p" />
+      }
+    </div>
+  </div>
+</section>

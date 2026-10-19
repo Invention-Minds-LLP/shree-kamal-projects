@@ -10,7 +10,7 @@ type Field = 'name' | 'org' | 'phone' | 'email' | 'sector' | 'stage' | 'message'
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [PageBoard, Icon],
   template: `
-    <app-page-board title="Start a conversation."
+    <app-page-board title="Start a conversation." photo="/construction/stage-5-closure.jpg"
       lead="Call or email directly, or send the details of your facility below and we will call you back." />
 
     <section class="wrap grid" aria-label="Contact details and enquiry">

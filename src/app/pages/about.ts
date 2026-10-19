@@ -7,7 +7,7 @@ import { PageBoard } from '../shared/page-board';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [PageBoard],
   template: `
-    <app-page-board title="About us."
+    <app-page-board title="About us." photo="/construction/stage-2-electrical.jpg"
       lead="A Bengaluru engineering and construction firm for technical buildings: the ones that make medicine, run tests and treat patients.">
       <dl class="fields">
         <dt>Established</dt><dd class="tnum">{{ company.established }}</dd>

@@ -1,0 +1,142 @@
+<!-- Hero: the site itself -->
+<section class="hero" aria-labelledby="c-hero-h">
+  <img class="hero-img" src="/construction/hero-site.jpg" alt="A pharmaceutical facility nearing completion, with scaffolding and a crane on site"
+    width="1536" height="1024" fetchpriority="high" />
+  <span class="illustrative">Illustrative image</span>
+  <div class="hero-inner wrap">
+    <h1 id="c-hero-h">One contractor,<br />layout to handover.</h1>
+    <p class="sub">
+      Design, electrical and building construction for pharma plants, R&amp;D labs, hospitals, clinics and
+      diagnostic centres, and maintenance after we hand over.
+    </p>
+    <div class="ctas">
+      <a class="btn" [href]="'tel:' + contact.phones[0].tel">
+        <app-icon name="phone" /><span class="tnum">Call {{ contact.phones[0].display }}</span>
+      </a>
+      <a class="btn line" routerLink="/projects">Our projects</a>
+    </div>
+  </div>
+  <div class="facts">
+    <div class="wrap facts-inner tnum">
+      <span><strong>{{ company.projects }}</strong> projects delivered</span>
+      <span>Working since <strong>{{ company.established }}</strong></span>
+      <span>A team of <strong>{{ company.team }}</strong></span>
+      <span><strong>Corporate &amp; industrial</strong> clients only</span>
+    </div>
+  </div>
+</section>
+
+<!-- Time-lapse: one facility through six stages -->
+<section class="lapse" aria-labelledby="c-lapse-h">
+  <div class="wrap lapse-head">
+    <h2 id="c-lapse-h">Watch a facility come together.</h2>
+    <p>
+      The same corridor, photographed at every stage we own. Scroll through the job from the first chalk line to
+      the first maintenance visit.
+    </p>
+  </div>
+
+  <div class="wrap lapse-grid">
+    <div class="frame-col">
+      <div class="frame" #frame>
+        <div class="photos">
+          @for (s of stages; track s.id; let i = $index) {
+            <img [src]="s.photo" [alt]="i === active() ? 'Progress photo: ' + s.name : ''"
+              width="1536" height="1024" [loading]="i < 2 ? 'eager' : 'lazy'"
+              [style.opacity]="photoOpacity(i)" />
+          }
+          <span class="illustrative">Illustrative images</span>
+        </div>
+        <div class="progress" aria-hidden="true">
+          @for (s of stages; track s.id; let i = $index) {
+            <span class="seg"><span class="fill" [style.transform]="'scaleX(' + t()[i] + ')'"></span></span>
+          }
+        </div>
+        <div class="caption">
+          <span class="cap-n tnum">{{ active() + 1 }}/6</span>
+          <span class="cap-name">{{ stages[active()].name }}</span>
+        </div>
+        <ol class="ticks" aria-label="Jump to a stage">
+          @for (s of stages; track s.id; let i = $index) {
+            <li>
+              <button type="button" [class.on]="i === active()" (click)="jump(i)"
+                [attr.aria-current]="i === active() ? 'step' : null">
+                <span class="visually-hidden">{{ s.name }}</span>{{ i + 1 }}
+              </button>
+            </li>
+          }
+        </ol>
+      </div>
+    </div>
+
+    <div class="steps">
+      @for (s of stages; track s.id; let i = $index) {
+        <article class="step" #step [class.on]="i === active()" [attr.aria-labelledby]="'c-st-' + s.id">
+          <span class="num tnum" aria-hidden="true">{{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }}</span>
+          <h3 [id]="'c-st-' + s.id">{{ s.name }}</h3>
+          <p class="lede">{{ s.short }}</p>
+          <p class="detail">{{ s.detail }}</p>
+          <ul class="inc">
+            @for (x of s.includes; track x) { <li>{{ x }}</li> }
+          </ul>
+        </article>
+      }
+      <a class="btn start" routerLink="/contact">Start your project <app-icon name="arrow" /></a>
+    </div>
+  </div>
+</section>
+
+<!-- Sectors: photo tiles -->
+<section class="sectors" aria-labelledby="c-sec-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="c-sec-h">Built for buildings with a process inside.</h2>
+      <a routerLink="/sectors" class="btn line">All sectors <app-icon name="arrow" /></a>
+    </div>
+    <ul class="tiles">
+      @for (s of sectors; track s.id; let i = $index) {
+        <li class="tile" [class.big]="i === 0">
+          <a [routerLink]="'/sectors'" [fragment]="s.id">
+            <img [src]="s.photo" alt="" width="1536" height="1024" loading="lazy" />
+            <span class="shade"></span>
+            <span class="tile-text">
+              <span class="tile-name">{{ s.name }}</span>
+              <span class="tile-line">{{ s.line }}</span>
+            </span>
+          </a>
+        </li>
+      }
+    </ul>
+    <p class="note">Images are illustrative until project photography is supplied.</p>
+  </div>
+</section>
+
+<!-- Why one contractor -->
+<section class="why" aria-labelledby="c-why-h">
+  <div class="wrap why-grid">
+    <h2 id="c-why-h">One point of accountability, from first drawing to last service visit.</h2>
+    <dl class="why-list">
+      <dt>No gaps between trades</dt>
+      <dd>Design, electrical, civil and dependent works run under one programme and one site team, so nothing is cut twice.</dd>
+      <dt>Built around your process</dt>
+      <dd>Layouts follow how your people, materials, samples or patients actually move through the building.</dd>
+      <dt>We stay after handover</dt>
+      <dd>Maintenance comes from the team that built it and knows where every cable runs.</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="work" aria-labelledby="c-work-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="c-work-h">{{ company.projects }} projects since {{ company.established }}.</h2>
+      <a routerLink="/projects" class="btn line">All projects <app-icon name="arrow" /></a>
+    </div>
+    <div class="work-grid">
+      @for (p of projects; track p.id) {
+        <app-project-board [p]="p" />
+      }
+    </div>
+  </div>
+</section>
