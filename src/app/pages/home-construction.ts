@@ -14,13 +14,14 @@ import { RouterLink } from '@angular/router';
 import { company, contact, projects, sectors, stages } from '../data/site';
 import { Icon } from '../shared/icon';
 import { ProjectBoard } from '../shared/project-board';
+import { WorkGallery } from '../shared/work-gallery';
 
 // Construction theme home. Signature: one facility photographed through all six
 // stages; scrolling the stage list advances the progress photo like a time-lapse.
 @Component({
   selector: 'app-home-construction',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, Icon, ProjectBoard],
+  imports: [RouterLink, Icon, ProjectBoard, WorkGallery],
   templateUrl: './home-construction.html',
   styleUrl: './home-construction.scss',
 })

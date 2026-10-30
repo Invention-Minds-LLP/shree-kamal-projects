@@ -13,6 +13,7 @@ import { RouterLink } from '@angular/router';
 import { company, contact, projects, sectors, stages } from '../data/site';
 import { Icon } from '../shared/icon';
 import { ProjectBoard } from '../shared/project-board';
+import { WorkGallery } from '../shared/work-gallery';
 
 // One plot, one fixed drone camera, twelve progress frames (illustrative).
 // `stage` is the index into `stages` that each frame belongs to.
@@ -48,7 +49,7 @@ const smooth = (v: number) => v * v * (3 - 2 * v);
 @Component({
   selector: 'app-home-build',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, Icon, ProjectBoard],
+  imports: [RouterLink, Icon, ProjectBoard, WorkGallery],
   templateUrl: './home-build.html',
   styleUrls: ['./home.scss', './home-build.scss'],
 })

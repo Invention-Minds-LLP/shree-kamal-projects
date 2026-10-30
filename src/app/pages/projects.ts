@@ -2,13 +2,14 @@ import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/c
 import { company, projects, sectors } from '../data/site';
 import { PageBoard } from '../shared/page-board';
 import { ProjectBoard } from '../shared/project-board';
+import { WorkGallery } from '../shared/work-gallery';
 
 @Component({
   selector: 'app-projects',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [PageBoard, ProjectBoard],
+  imports: [PageBoard, ProjectBoard, WorkGallery],
   template: `
-    <app-page-board title="Our projects." photo="/construction/hero-site.jpg"
+    <app-page-board title="Our projects." photo="/work/lab-06.jpg"
       [lead]="company.projects + ' projects delivered since ' + company.established + ' across pharma, research, healthcare and diagnostics, from first layout to handover and beyond.'" />
 
     <section class="wrap list" aria-labelledby="list-h">
@@ -37,6 +38,8 @@ import { ProjectBoard } from '../shared/project-board';
         </div>
       }
     </section>
+
+    <app-work-gallery [tint]="true" />
   `,
   styles: `
     :host { display: block; }

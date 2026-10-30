@@ -15,11 +15,12 @@ import { company, contact, projects, sectors, stages } from '../data/site';
 import { Icon } from '../shared/icon';
 import { LotusBuild } from '../shared/lotus-build';
 import { ProjectBoard } from '../shared/project-board';
+import { WorkGallery } from '../shared/work-gallery';
 
 @Component({
   selector: 'app-home',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, Icon, LotusBuild, ProjectBoard],
+  imports: [RouterLink, Icon, LotusBuild, ProjectBoard, WorkGallery],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

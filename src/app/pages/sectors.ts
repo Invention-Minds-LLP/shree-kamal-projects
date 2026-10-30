@@ -8,7 +8,7 @@ import { PageBoard } from '../shared/page-board';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [PageBoard],
   template: `
-    <app-page-board title="Who we build for." photo="/construction/sector-labs.jpg"
+    <app-page-board title="Who we build for." photo="/work/lab-04.jpg"
       lead="Corporate and industrial clients only. Five sectors where the building is part of the process, and getting it wrong shows up in an audit, an outage or a patient's day.">
       <ul class="jump">
         @for (s of sectors; track s.id) {

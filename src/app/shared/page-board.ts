@@ -12,7 +12,9 @@ import { LotusBuild } from './lotus-build';
     <header class="band" [class.photo]="isConstruction()">
       @if (isConstruction()) {
         <img class="bg" [src]="photo()" alt="" width="1536" height="1024" />
-        <span class="illustrative">Illustrative image</span>
+        @if (!photo().startsWith('/work/')) {
+          <span class="illustrative">Illustrative image</span>
+        }
       } @else {
         <app-lotus-build class="mark" [still]="true" aria-hidden="true" />
       }

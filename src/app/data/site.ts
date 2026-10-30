@@ -128,7 +128,7 @@ export const sectors: Sector[] = [
   },
   {
     id: 'labs',
-    photo: '/construction/sector-labs.jpg',
+    photo: '/work/lab-03.jpg',
     name: 'R&D labs',
     board: 'R&D Labs',
     line: 'Research and testing labs with dense equipment loads, bench services and room to change later.',
@@ -179,11 +179,28 @@ export interface Project {
 // Set sample:false once an entry holds real project facts.
 export const projects: Project[] = [
   { id: 'p1', title: 'Production block fit-out', sector: 'pharma', scope: ['layout', 'electrical', 'construction', 'closure'], location: 'Karnataka', status: 'Handed over', sample: true },
-  { id: 'p2', title: 'Analytical R&D laboratory', sector: 'labs', scope: ['layout', 'electrical', 'construction', 'services', 'closure'], location: 'Bengaluru', status: 'Under maintenance', sample: true },
+  { id: 'p2', title: 'Analytical R&D laboratory', sector: 'labs', scope: ['layout', 'electrical', 'construction', 'services', 'closure'], location: 'Bengaluru', status: 'Under maintenance', photo: '/work/lab-01.jpg', sample: true },
   { id: 'p3', title: 'Hospital wing refurbishment', sector: 'healthcare', scope: ['electrical', 'construction', 'closure', 'maintenance'], location: 'Bengaluru', status: 'Under maintenance', sample: true },
   { id: 'p4', title: 'Multi-speciality polyclinic', sector: 'rehab', scope: ['layout', 'construction', 'services', 'closure'], location: 'Bengaluru', status: 'Handed over', sample: true },
   { id: 'p5', title: 'Diagnostic imaging centre', sector: 'diagnostics', scope: ['layout', 'electrical', 'construction', 'closure', 'maintenance'], location: 'Karnataka', status: 'Under maintenance', sample: true },
   { id: 'p6', title: 'QC laboratory expansion', sector: 'pharma', scope: ['electrical', 'construction', 'services'], location: 'Karnataka', status: 'In progress', sample: true },
+];
+
+export interface WorkPhoto {
+  src: string; // 1600 wide
+  small: string; // 800 wide
+  alt: string;
+}
+
+// Real photographs supplied by the client (WhatsApp, 27 Oct 2026): an analytical laboratory.
+// Not illustrative. Originals kept in .impeccable/provenance/work.
+export const work: WorkPhoto[] = [
+  { src: '/work/lab-01.jpg', small: '/work/lab-01-800.jpg', alt: 'Open-plan analytical laboratory with instrument benches and glazed rooms beyond' },
+  { src: '/work/lab-02.jpg', small: '/work/lab-02-800.jpg', alt: 'Chromatography instruments on steel-framed lab benches' },
+  { src: '/work/lab-03.jpg', small: '/work/lab-03-800.jpg', alt: 'Wet-lab benches with articulated fume extraction arms over each station' },
+  { src: '/work/lab-04.jpg', small: '/work/lab-04-800.jpg', alt: 'Mass spectrometer and liquid chromatograph installed in the instrument room' },
+  { src: '/work/lab-05.jpg', small: '/work/lab-05-800.jpg', alt: 'Sample preparation station with ducted extraction and a workstation' },
+  { src: '/work/lab-06.jpg', small: '/work/lab-06-800.jpg', alt: 'Row of analytical instruments with bench power and data points' },
 ];
 
 export const nav = [
